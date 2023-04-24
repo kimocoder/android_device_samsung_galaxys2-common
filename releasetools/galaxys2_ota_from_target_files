@@ -26,10 +26,8 @@ sys.path.append(RELEASETOOLS_DIR)
 # Import the existing file so we just have to rewrite the modules we need.
 # This is a nasty hack as the filename doesn't end in .py, but it works
 filename = os.path.join(RELEASETOOLS_DIR, 'ota_from_target_files')
-f = open(filename, 'rU')
-ota_from_target_files = imp.load_module('ota_from_target_files', f, filename, ('', 'U', 1))
-f.close()
-
+with open(filename, 'rU') as f:
+    ota_from_target_files = imp.load_module('ota_from_target_files', f, filename, ('', 'U', 1))
 from ota_from_target_files import *
 
 __doc__ = ota_from_target_files.__doc__
